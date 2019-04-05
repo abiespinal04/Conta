@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {View,Text} from 'react-native';
-import ContactList from './ContactList'
+import ContactList from './ContactList';
+import EmployeeMenu  from './EmployeeMenu';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from '../reducers'
 
 
 
@@ -20,7 +24,14 @@ class Home extends Component {
       };
     render() { 
         return ( 
-            <ContactList/>
+    <Provider store={createStore(reducers)}>
+    
+    
+      <ContactList/>
+      
+ 
+      </Provider>
+        
          );
     }
 }

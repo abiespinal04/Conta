@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './src/reducers'
  import {createAppContainer,createStackNavigator} from 'react-navigation'
-
 import Home from './src/common/Home'
+
 
 
 const stack = createStackNavigator({
@@ -15,18 +15,15 @@ const stack = createStackNavigator({
 
 
 class App extends Component {
-  state = {  }
+
 
   
   render() { 
     return ( 
-      <Provider store={createStore(reducers)}>
-      <View>
+    
     
       <Home/>
-
-      </View>
-      </Provider>
+    
      );
   }
 }

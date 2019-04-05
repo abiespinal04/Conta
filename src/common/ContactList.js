@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
 import {FlatList, View,Text} from 'react-native';
 import ContactInfo from './ContactInfo'
-import EmployeeMenu  from './EmployeeMenu';
+import EmployeeMenu from './EmployeeMenu';
+import {connect} from 'react-redux';
+import Datas from '../reducers/DataList.json'
+
+
+
+
 
 
 class ContactList extends Component {
-    state = {  }
-
-     renderContact = (contact) => {
-
-        <ContactInfo contact={contact} />
+   
+    
+     renderContact(data){
+       
+        return <ContactInfo data={data} />
+       
     }
+
+    componentDidMount(){
+        this.props
+    }
+   
     render() { 
+        console.log(this.props.list)
+        const{libraries} = this.props;
         return ( 
+       
             <View>
-            <FlatList
-            data={this.props.contact}
-            renderItem={({item}) => this.renderContact(item)}
-            keyExtractor={contact => contact.id}
-            />
             <EmployeeMenu/>
+            <View style={{alignSelf:'center',paddingTop:40}}>
+            <FlatList
+            data={Datas}
+            extraData={this.props}
+            //the {item} is destructed from the renderItem
+            renderItem={({item}) => this.renderContact(item)}
+            keyExtractor={libray => libray.id}
+            />
+            </View>
+          
             </View>
 
          );
     }
 }
+const mapStateToProps = state => {
+
+    return {libraries:state.library}
+}
+
  
-export default ContactList;
+export default connect(mapStateToProps)(ContactList);

@@ -7,19 +7,31 @@ import {connect} from 'react-redux';
 class ContactInfo extends Component {
     state = {  }
     render() { 
+        const {ContactInfo} = styles;
         return ( 
 
             <View>
-                <Text> </Text>
+                <Text style={ContactInfo}>{this.props.data.title} </Text>
             </View>
          );
     }
 }
+
+const styles = {
+    ContactInfo: {
+        fontSize: 15,
+        fontWeight: 'bold'
+    }
+
+}
+
+
+
 const mapStateToProps = (state,onwProps) => {
 
     
 
-    return{}
+    return{user:state.user}
 
 }
  

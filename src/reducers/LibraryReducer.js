@@ -1,9 +1,9 @@
-import data from './data.json'
+import Data from './DataList.json'
 
 export default () => {
 
     return{
-        library: data
+        library: Data
     }
 
 }
