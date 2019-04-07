@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text} from 'react-native';
+import {View,TouchableOpacity, Text} from 'react-native';
 import {connect} from 'react-redux';
+
 
 
 
@@ -10,9 +11,11 @@ class ContactInfo extends Component {
         const {ContactInfo} = styles;
         return ( 
 
+            <TouchableOpacity>
             <View>
                 <Text style={ContactInfo}>{this.props.data.title} </Text>
             </View>
+            </TouchableOpacity>
          );
     }
 }

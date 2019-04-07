@@ -24,7 +24,7 @@ class ContactList extends Component {
     }
    
     render() { 
-        console.log(this.props.list)
+        console.log(this.props);
         const{libraries} = this.props;
         return ( 
        
@@ -32,7 +32,7 @@ class ContactList extends Component {
             <EmployeeMenu/>
             <View style={{alignSelf:'center',paddingTop:40}}>
             <FlatList
-            data={Datas}
+            data={this.props.libraries.library}
             extraData={this.props}
             //the {item} is destructed from the renderItem
             renderItem={({item}) => this.renderContact(item)}
