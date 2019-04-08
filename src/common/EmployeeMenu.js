@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Modal,View,Text,TouchableOpacity} from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 import {connect} from 'react-redux';
 import * as actions from '../actions'
 
@@ -28,13 +29,18 @@ class EmployeeMenu extends Component {
         const {usersList} = this.props;
         return ( 
             <View style={EmployeeView}>
+          
                 <Text style={EmployeeMenu}>
-                    EMPLOYEE
+                Client
                 </Text>
                 <TouchableOpacity
              onPress={() => this.props.navigation.navigate('Details')}
                 >
-                <Text style={{fontSize:30}}>+</Text>
+               <Icon
+                name="ios-add-circle"
+           
+                size={25}
+                />
                 </TouchableOpacity>
               
             </View>
@@ -55,7 +61,7 @@ const styles={
         shadowOpacity:.2,
         elevation:5,
         paddingLeft: 5,
-        paddingRight: 280
+        paddingRight: 320
         
     },
     EmployeeView:{
