@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {DatePickerIOS,Picker,TextInput,Text,View,TouchableOpacity} from 'react-native';
+import {ScrollView,DatePickerIOS,Picker,TextInput,Text,View,TouchableOpacity} from 'react-native';
 import CardSection from '../common/CardSection'
 import Card from '../common/Card'
 
 
 class AddUser extends Component {
     state = { 
-    chosenDate: new Date()
+    startDate: new Date(),
+    endDate: new Date(),
+    
+    
      }
 
     static navigationOptions = {
@@ -20,16 +23,22 @@ class AddUser extends Component {
         },
       };
 
-      setDate =(newDate) =>  {
-        this.setState({chosenDate: newDate});
+      setStartDate =(newDate) =>  {
+        this.setState({startDate: newDate});
       }
-
+      setEndDate =(newDate) =>  {
+        this.setState({endDate: newDate});
+      }
     render() { 
-        const{textStyles,containerStyle,combinedText} = styles;
+        const{textStyles,containerStyle,combinedText,textStylesCenter} = styles;
         return ( 
        
-            <Card>
+            <ScrollView 
+            bounces={true}
+             >
             <View style={containerStyle}>
+            <Card>
+            <View style={containerStyle} >
             <Card>
             <View style={combinedText}>
             <Text style={textStyles}>FirstName</Text>
@@ -65,27 +74,61 @@ class AddUser extends Component {
             placeholder="Loan Interest"
             onChangeText={(text) => this.setState({text})}
           />
+           
           </Card>
-            <Card>
-            <Picker
+          <Card>
+            <Text style={textStylesCenter}>QUOTA</Text>
+        <Picker
             selectedValue={this.state.language}
-            style={containerStyle}
+        
             onValueChange={(itemValue, itemIndex) =>
             this.setState({language: itemValue})
             }>
-            <Picker.Item label="Monthly" value="monthly" />
-            <Picker.Item label="Weekly" value="weekly" />
-            </Picker>
+        <Picker.Item label="Daily" value="daily" />
+        <Picker.Item label="Weekly" value="weekly" />
+        <Picker.Item label="Bi-Weekly" value="bi-weekly" />
+        <Picker.Item label="Monthly" value="monthly" />
+        <Picker.Item label="Yearly" value="yearly" />
+        </Picker>
         </Card>
-          </View>
-
+        <Card>
+        <Text style={textStylesCenter}>Start</Text>
+       
           <DatePickerIOS
-          date={this.state.chosenDate}
-          onDateChange={(newDate)=> this.setDate(newDate)}
+          date={this.state.startDate}
+          mode={'date'}
+          onDateChange={(newDate)=> this.setStartDate(newDate)}
+          
         />
 
+        </Card>
+
+        <Card>
+        <Text style={textStylesCenter}>End</Text>
+       
+          <DatePickerIOS
+          date={this.state.endDate}
+          mode={'date'}
+          onDateChange={(newDate)=> this.setEndDate(newDate)}
+          
+        />
+
+        </Card>
+          </View>
           </Card>
 
+      
+        
+
+        <View style={{alignSelf:'center'}}>
+                <TouchableOpacity>
+                    <Text style={textStylesCenter}>Summit</Text>
+                </TouchableOpacity>
+        </View>
+          
+        </View>
+
+        </ScrollView>
          );
     }
 }
@@ -94,6 +137,11 @@ const styles={
     textStyles:{
         fontWeight:'bold',
         fontSize:20,
+    },
+    textStylesCenter:{
+        fontWeight:'bold',
+        fontSize:20,
+        alignSelf:'center'
     },
     containerStyle: {
         borderBottomWidth: 1,
