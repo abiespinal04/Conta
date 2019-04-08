@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import {Picker,TextInput,Text,View,TouchableOpacity} from 'react-native';
+import {DatePickerIOS,Picker,TextInput,Text,View,TouchableOpacity} from 'react-native';
 import CardSection from '../common/CardSection'
 import Card from '../common/Card'
 
 
 class AddUser extends Component {
-    state = {  }
+    state = { 
+    chosenDate: new Date()
+     }
 
     static navigationOptions = {
         title: 'User',
@@ -18,14 +20,20 @@ class AddUser extends Component {
         },
       };
 
+      setDate =(newDate) =>  {
+        this.setState({chosenDate: newDate});
+      }
+
     render() { 
-        const{textStyles,containerStyle} = styles;
+        const{textStyles,containerStyle,combinedText} = styles;
         return ( 
        
-            <Card style={{flex:1}}>
+            <Card>
             <View style={containerStyle}>
             <Card>
+            <View style={combinedText}>
             <Text style={textStyles}>FirstName</Text>
+            </View>
             <TextInput
             style={{height: 40}}
             placeholder="Enter FirstName"
@@ -33,7 +41,9 @@ class AddUser extends Component {
           />
           </Card>
           <Card>
+          <View style={combinedText}>
              <Text style={textStyles}>LastName</Text>
+             </View>
              <TextInput
             style={{height: 40}}
             placeholder="Enter LastName"
@@ -41,26 +51,39 @@ class AddUser extends Component {
           />
             </Card>
             <Card>
-             <Text style={textStyles}>Loan</Text>
-             <TextInput
+            <View style={combinedText}>
+             <Text style={textStyles}>Loan Details</Text>
+          </View>
+         
+          <TextInput
             style={{height: 40}}
             placeholder="Enter loan"
             onChangeText={(text) => this.setState({text})}
           />
-            </Card>
+           <TextInput
+            style={{height: 40}}
+            placeholder="Loan Interest"
+            onChangeText={(text) => this.setState({text})}
+          />
+          </Card>
             <Card>
             <Picker
-
-  selectedValue={this.state.language}
-  style={containerStyle}
-  onValueChange={(itemValue, itemIndex) =>
-    this.setState({language: itemValue})
-  }>
-  <Picker.Item label="Monthly" value="monthly" />
-  <Picker.Item label="Weekly" value="weekly" />
-</Picker>
-</Card>
+            selectedValue={this.state.language}
+            style={containerStyle}
+            onValueChange={(itemValue, itemIndex) =>
+            this.setState({language: itemValue})
+            }>
+            <Picker.Item label="Monthly" value="monthly" />
+            <Picker.Item label="Weekly" value="weekly" />
+            </Picker>
+        </Card>
           </View>
+
+          <DatePickerIOS
+          date={this.state.chosenDate}
+          onDateChange={(newDate)=> this.setDate(newDate)}
+        />
+
           </Card>
 
          );
@@ -81,6 +104,15 @@ const styles={
         position: 'relative',
       
      
+      }, 
+      combinedText:{
+        borderBottomWidth: 1,
+        padding: 10,
+        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        borderColor: '#ddd',
+        position: 'relative',
       }
 }
  
