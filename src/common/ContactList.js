@@ -3,7 +3,7 @@ import {FlatList, View,Text} from 'react-native';
 import ContactInfo from './ContactInfo'
 import EmployeeMenu from './EmployeeMenu';
 import {connect} from 'react-redux';
-import Datas from '../reducers/DataList.json'
+
 
 
 
@@ -25,20 +25,25 @@ class ContactList extends Component {
    
     render() { 
         console.log(this.props);
-        const{libraries} = this.props;
+        const{library} = this.props.libraries;
         return ( 
        
             <View>
-            <EmployeeMenu/>
-            <View style={{alignSelf:'center',paddingTop:40}}>
+            <View style={{alignSelf:'center',paddingTop:40}}> 
+            <EmployeeMenu usersList={library} navigation={this.props.navigation}/>
+            </View>
+           
+       
             <FlatList
-            data={this.props.libraries.library}
+            data={library}
             extraData={this.props}
             //the {item} is destructed from the renderItem
             renderItem={({item}) => this.renderContact(item)}
             keyExtractor={libray => libray.id}
             />
-            </View>
+
+       
+           
           
             </View>
 

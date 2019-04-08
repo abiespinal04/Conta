@@ -5,14 +5,20 @@ import {createStore} from 'redux';
 import reducers from './src/reducers'
  import {createAppContainer,createStackNavigator} from 'react-navigation'
 import Home from './src/common/Home'
+import AddUser from './src/screens/AddUser'
 
 
 
 const stack = createStackNavigator({
-  Home: Home
-})
+  Home: {screen:Home},
+  Details: AddUser,
+}
+,
+{
+  initialRouteName: "Home"
+});
 
-
+const AppContainer = createAppContainer(stack);
 
 class App extends Component {
 
@@ -22,10 +28,10 @@ class App extends Component {
     return ( 
     
     
-      <Home/>
+    <AppContainer/>
     
      );
   }
 }
- App = stack;
-export default createAppContainer(App);
+
+export default App;

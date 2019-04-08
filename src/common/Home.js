@@ -27,7 +27,7 @@ class Home extends Component {
     <Provider store={createStore(reducers)}>
     
     
-      <ContactList/>
+      <ContactList navigation={this.props.navigation}/>
       
  
       </Provider>
