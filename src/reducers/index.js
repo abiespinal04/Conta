@@ -1,11 +1,11 @@
 
 import {combineReducers} from 'redux';
 import LibraryReducer from './LibraryReducer';
-import AddUserReducer from './AddUserReducer'
+import AddClientReducer from './AddClientReducer'
 
 
 export default combineReducers({
     library: LibraryReducer,
-    User:AddUserReducer
+    client:AddClientReducer
 });
 

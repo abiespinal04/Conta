@@ -5,6 +5,7 @@ import EmployeeMenu  from './EmployeeMenu';
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from '../reducers'
+import App from '../../App'
 
 
 
@@ -27,14 +28,12 @@ class Home extends Component {
     render() { 
 
         return ( 
-    <Provider store={createStore(reducers)}>
+  
     
     
+     
     <ContactList navigation={this.props.navigation}/>
-      
  
-      </Provider>
-        
          );
     }
 

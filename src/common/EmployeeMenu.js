@@ -23,9 +23,6 @@ class EmployeeMenu extends Component {
 
     }    
     render() { 
-        const handleName = () => {
-        
-        }
         const {EmployeeMenu,EmployeeView} = styles
         const {usersList} = this.props;
         return ( 

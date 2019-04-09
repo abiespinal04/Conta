@@ -4,3 +4,9 @@ export const addUser = (librayId) => {
         payload:librayId
     }
 }
+export const AddClient = (client) => {
+    return {
+        type:'add_client',
+        payload:client
+    }
+}

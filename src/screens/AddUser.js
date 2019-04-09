@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import {ScrollView,DatePickerIOS,Picker,TextInput,Text,View,TouchableOpacity} from 'react-native';
-import CardSection from '../common/CardSection'
-import Card from '../common/Card'
+import CardSection from '../common/CardSection';
+import Card from '../common/Card';
+import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 
 class AddUser extends Component {
     state = { 
     startDate: new Date(),
     endDate: new Date(),
-    
+    client: {
+      firstName:'',
+      lastName:'',
+
+    }
     
      }
 
@@ -23,12 +29,28 @@ class AddUser extends Component {
         },
       };
 
+      handleSummit = (client) => {
+        this.props.AddClient(client)
+      }
       setStartDate =(newDate) =>  {
         this.setState({startDate: newDate});
       }
       setEndDate =(newDate) =>  {
         this.setState({endDate: newDate});
       }
+
+      handleTextInputFN = (text) => {
+        const newClient = {...this.state.client};
+        newClient.firstName = text;
+        this.setState({client:newClient});
+      }
+      handleTextInputLN = (text) => {
+        const newClient = {...this.state.client};
+        newClient.lastName = text;
+        this.setState({client:newClient});
+      }
+
+
     render() { 
         const{textStyles,containerStyle,combinedText,textStylesCenter} = styles;
         return ( 
@@ -46,7 +68,7 @@ class AddUser extends Component {
             <TextInput
             style={{height: 40}}
             placeholder="Enter FirstName"
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={(firstName) => this.handleTextInputFN(firstName)}
           />
           </Card>
           <Card>
@@ -56,7 +78,7 @@ class AddUser extends Component {
              <TextInput
             style={{height: 40}}
             placeholder="Enter LastName"
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={(lastName) => this.handleTextInputLN(lastName)}
           />
             </Card>
             <Card>
@@ -121,7 +143,9 @@ class AddUser extends Component {
         
 
         <View style={{alignSelf:'center'}}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={()=>this.handleSummit(this.state.client)}
+                >
                     <Text style={textStylesCenter}>Summit</Text>
                 </TouchableOpacity>
         </View>
@@ -163,5 +187,11 @@ const styles={
         position: 'relative',
       }
 }
+
+const mapStateToProps = (state) => {
+
+
+  return {client: state.client}
+}
  
-export default AddUser;
+export default connect(mapStateToProps,actions)(AddUser);
