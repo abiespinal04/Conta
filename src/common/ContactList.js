@@ -4,6 +4,8 @@ import ContactInfo from './ContactInfo'
 import EmployeeMenu from './EmployeeMenu';
 import ClientList from './ClientList';
 import Icon from "react-native-vector-icons/Ionicons";
+import Card from './Card'
+import SearchBar from './SearchBar';
 import {connect} from 'react-redux';
 
 
@@ -23,10 +25,10 @@ class ContactList extends Component {
 
   
     renderComponent = () => {
-        
-        return this.props.libraries !== null?
+        const{library} = this.props.libraries;
+        return library === null?
         <Text style={{paddingTop:50, paddingLeft: 6,paddingRight: 6}}>Click on the  
-        + to add a new client :) </Text>: <ContactInfo data={this.props.libraries}/>
+        + to add a new client :) </Text> : <ClientList library={library}/>
       }
    
     render() { 
@@ -34,25 +36,26 @@ class ContactList extends Component {
         const{library} = this.props.libraries;
         return ( 
        
-            <View>
+           
+            <View >
+            <SearchBar library={library}/> 
             <View style={{alignSelf:'center',paddingTop:40}}> 
+          
             <EmployeeMenu 
             usersList={library} 
             navigation={this.props.navigation}
             />
-            {this.renderComponent()}
-            </View>
-      
-       
-          <ClientList 
-          library={library}
-          renderContact={this.renderContact}
-          />
+            
 
-       
-           
-          
+      
             </View>
+          
+            {this.renderComponent()}
+      
+           
+           </View>
+          
+          
 
          );
     }

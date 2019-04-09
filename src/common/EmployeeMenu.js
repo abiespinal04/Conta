@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Modal,View,Text,TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import {connect} from 'react-redux';
+
 import * as actions from '../actions'
 
 

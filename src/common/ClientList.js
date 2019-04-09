@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
-import {FlatList} from 'react-native';
+import {FlatList,View} from 'react-native';
+import ContactInfo from './ContactInfo'
+import JSONData from '../reducers/DataList.json'
 
 
 class ClientList extends Component {
     state = {  }
 
-    handleContact = () => {
+    handleContact = (item) => {
 
+        return <ContactInfo data={item}/>
     }
     render() { 
-        const {library,renderContact} = this.props;
+        const {library} = this.props;
         return ( 
             
+         
+            <View >
             <FlatList
             data={library}
             extraData={this.props}
             //the {item} is destructed from the renderItem
-            renderItem={({item}) => renderContact}
-            keyExtractor={libray => libray.id}
+            renderItem={({item}) => this.handleContact(item)}
+            keyExtractor={library => library.id}
             />
+           </View>
          );
     }
 }
