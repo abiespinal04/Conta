@@ -16,6 +16,7 @@ class ContactInfo extends Component {
         return ( 
 
             <CardSection>
+            
             <TouchableOpacity>
             <View>
                 <Text style={ContactInfo}>{this.props.client.firstName} </Text>

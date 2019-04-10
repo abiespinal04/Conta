@@ -10,12 +10,11 @@ class AddUser extends Component {
     state = { 
     startDate: new Date(),
     endDate: new Date(),
-    client: [
-      {
+    client: [{
+      id:0,
       firstName:'',
       lastName:'',
-      }
-          ]
+      }]
     
      }
 
@@ -40,9 +39,10 @@ class AddUser extends Component {
         this.setState({endDate: newDate});
       }
 
-      handleTextInputFN = (text) => {
+      handleTextInputFN = (text,obj) => {
         const newClient = [...this.state.client];
-        newClient[0].firstName = text;
+        let index = newClient.indexOf(obj);
+        newClient[index].firstName = text;
         this.setState({client:newClient});
       }
       handleTextInputLN = (text) => {
@@ -69,7 +69,7 @@ class AddUser extends Component {
             <TextInput
             style={{height: 40}}
             placeholder="Enter FirstName"
-            onChangeText={(firstName) => this.handleTextInputFN(firstName)}
+            onChangeText={(firstName) => this.handleTextInputFN(firstName,this.state.client[0])}
           />
           </Card>
           <Card>

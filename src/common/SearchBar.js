@@ -9,7 +9,7 @@ const handleEditable = (props) => {
 
 const SearchBar = (props) => {
     return ( 
-        <View style={{alignSelf:'center', paddingTop:5,paddingBottom:5}}>
+        <View style={{alignSelf:'center',paddingBottom:10}}>
         <TextInput
         placeholder='Search'
         style={{height: 40,width:230, borderColor: 'gray', borderWidth: 1}}

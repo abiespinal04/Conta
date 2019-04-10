@@ -23,7 +23,7 @@ class ClientList extends Component {
             extraData={this.props}
             //the {item} is destructed from the renderItem
             renderItem={({item}) => this.handleContact(item)}
-            keyExtractor={library => library.id}
+            keyExtractor={(item) => item.toString()}
             />
       
            </View>

@@ -26,10 +26,11 @@ class ContactList extends Component {
   
     renderComponent = () => {
         const{client} = this.props;
+        const{textStyle} = styles
         // this.renderContact(client);
         // console.log(client);
         return Object.getOwnPropertyNames(client).length === 0?
-        <Text style={{paddingTop:50, paddingLeft: 6,paddingRight: 6}}>Click on the  
+        <Text style={textStyle}>Click on the  
         + to add a new client :) </Text> : <ClientList client={client}/>
       }
    
@@ -40,17 +41,17 @@ class ContactList extends Component {
        
            
             <View >
-            <SearchBar library={client}/> 
-            <View style={{alignSelf:'center',paddingTop:40}}> 
+          
+            <View style={{alignSelf:'center',paddingTop:35}}> 
           
             <EmployeeMenu 
             usersList={client} 
             navigation={this.props.navigation}
             />
-            
-
+             <SearchBar library={client}/> 
       
             </View>
+           
           
             {this.renderComponent()}
            </View>
@@ -58,6 +59,15 @@ class ContactList extends Component {
           
 
          );
+    }
+}
+const styles = {
+    textStyle:{
+        alignSelf:'center', 
+        fontSize: 20,
+        paddingTop:80, 
+        paddingLeft: 6,
+        paddingRight: 6
     }
 }
 const mapDispatchToProps = state => {
