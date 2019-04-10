@@ -1,12 +1,13 @@
 
 
-export default (state = null, action) => {
+export default (state = {}, action) => {
     switch(action.type){
-        case 'add_client': 
-        console.log(action.payload)
-        return action.payload;
-        
-        default:
+        case 'add_client': {
+        return action.payload
+        }
+        default:{
         return state
+        }
     }
+    
 };

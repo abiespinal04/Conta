@@ -7,16 +7,19 @@ import Card from './Card'
 
 
 
+
 class ContactInfo extends Component {
     state = {  }
     render() { 
         const {ContactInfo} = styles;
+    
         return ( 
 
             <CardSection>
             <TouchableOpacity>
             <View>
-                <Text style={ContactInfo}>{this.props.data.title} </Text>
+                <Text style={ContactInfo}>{this.props.client.firstName} </Text>
+                
             </View>
             </TouchableOpacity>
             </CardSection>

@@ -16,33 +16,35 @@ import {connect} from 'react-redux';
 
 class ContactList extends Component {
    
-    
-     renderContact(data){
+   
+    //  renderContact(client){
        
-        return <ContactInfo data={data} />
+    //     return <ContactInfo client={client} />
        
-    }
+    // }
 
   
     renderComponent = () => {
-        const{library} = this.props.libraries;
-        return library === null?
+        const{client} = this.props;
+        // this.renderContact(client);
+        // console.log(client);
+        return Object.getOwnPropertyNames(client).length === 0?
         <Text style={{paddingTop:50, paddingLeft: 6,paddingRight: 6}}>Click on the  
-        + to add a new client :) </Text> : <ClientList library={library}/>
+        + to add a new client :) </Text> : <ClientList client={client}/>
       }
    
     render() { 
-        console.log(this.props);
-        const{library} = this.props.libraries;
+       
+        const{client} = this.props;
         return ( 
        
            
             <View >
-            <SearchBar library={library}/> 
+            <SearchBar library={client}/> 
             <View style={{alignSelf:'center',paddingTop:40}}> 
           
             <EmployeeMenu 
-            usersList={library} 
+            usersList={client} 
             navigation={this.props.navigation}
             />
             
@@ -51,8 +53,6 @@ class ContactList extends Component {
             </View>
           
             {this.renderComponent()}
-      
-           
            </View>
           
           
@@ -60,10 +60,10 @@ class ContactList extends Component {
          );
     }
 }
-const mapStateToProps = state => {
+const mapDispatchToProps = state => {
 
-    return {libraries:state.library}
+    return {client:state.myclient}
 }
 
  
-export default connect(mapStateToProps)(ContactList);
+export default connect(mapDispatchToProps)(ContactList);

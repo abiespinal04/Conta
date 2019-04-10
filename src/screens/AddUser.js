@@ -10,11 +10,12 @@ class AddUser extends Component {
     state = { 
     startDate: new Date(),
     endDate: new Date(),
-    client: {
+    client: [
+      {
       firstName:'',
       lastName:'',
-
-    }
+      }
+          ]
     
      }
 
@@ -40,13 +41,13 @@ class AddUser extends Component {
       }
 
       handleTextInputFN = (text) => {
-        const newClient = {...this.state.client};
-        newClient.firstName = text;
+        const newClient = [...this.state.client];
+        newClient[0].firstName = text;
         this.setState({client:newClient});
       }
       handleTextInputLN = (text) => {
-        const newClient = {...this.state.client};
-        newClient.lastName = text;
+        const newClient = [...this.state.client];
+        newClient[0].lastName = text;
         this.setState({client:newClient});
       }
 
@@ -191,7 +192,7 @@ const styles={
 const mapStateToProps = (state) => {
 
 
-  return {client: state.client}
+  return {client: state.myclient}
 }
  
 export default connect(mapStateToProps,actions)(AddUser);

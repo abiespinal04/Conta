@@ -6,6 +6,6 @@ import AddClientReducer from './AddClientReducer'
 
 export default combineReducers({
     library: LibraryReducer,
-    client:AddClientReducer
+    myclient:AddClientReducer
 });
 
