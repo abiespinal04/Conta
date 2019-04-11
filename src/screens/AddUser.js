@@ -11,7 +11,6 @@ class AddUser extends Component {
     startDate: new Date(),
     endDate: new Date(),
     client: [{
-      id:0,
       firstName:'',
       lastName:'',
       }]
@@ -41,9 +40,8 @@ class AddUser extends Component {
 
       handleTextInputFN = (text,obj) => {
         const newClient = [...this.state.client];
-        let index = newClient.indexOf(obj);
-        newClient[index].firstName = text;
-        this.setState({client:newClient});
+        newClient[0].firstName = text;
+        this.setState({client: [...this.state.client], ...newClient})
       }
       handleTextInputLN = (text) => {
         const newClient = [...this.state.client];
